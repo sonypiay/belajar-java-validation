@@ -22,9 +22,13 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(
+            @NotBlank(message = "firstname cannot blank") String firstName,
+            @NotBlank(message = "lastname cannot blank") String lastName,
+            @NotNull(message = "Address cannot blank") @Valid Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -49,6 +53,14 @@ public class Person {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void sayHello(@NotBlank(message = "Name cannot blank") String name) {
+        System.out.println("Hello, " + name + ". My name is " + firstName);
+    }
+
+    public String getFullname() {
+        return firstName + " " + lastName;
     }
 
     @Override

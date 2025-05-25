@@ -1,6 +1,7 @@
 package programmerzamannow.validation;
 
 import jakarta.validation.*;
+import jakarta.validation.executable.ExecutableValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -12,10 +13,13 @@ public abstract class AbstractValidatorTest {
 
     protected Validator validator;
 
+    protected ExecutableValidator executableValidator;
+
     @BeforeEach
     void setUp() {
         validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
+        executableValidator = validator.forExecutables();
     }
 
     @AfterEach

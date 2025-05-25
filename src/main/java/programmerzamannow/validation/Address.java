@@ -13,9 +13,6 @@ public class Address {
     @NotBlank(message = "Country cannot blank")
     private String country;
 
-    public Address() {
-    }
-
     public String getStreet() {
         return street;
     }
