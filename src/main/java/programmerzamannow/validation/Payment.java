@@ -14,8 +14,8 @@ import programmerzamannow.validation.payload.EmailErrorPayload;
 
 public class Payment {
 
-    @NotBlank(message = "Order ID cannot blank", groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class})
-    @Size(min = 1, max = 10, message = "Order ID must be between {min} and {max} characters")
+    @NotBlank(message = "{order.id.notblank}", groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class})
+    @Size(min = 1, max = 10, message = "{order.id.size}")
     private String orderId;
 
     @NotNull(
@@ -24,7 +24,7 @@ public class Payment {
     )
     @Range(
             min = 10_000L, max = 100_000_000L,
-            message = "Amount must be between {min} and {max}",
+            message = "{order.amount.range}",
             groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class}
     )
     private Long amount;
