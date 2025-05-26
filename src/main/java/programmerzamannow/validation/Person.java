@@ -19,9 +19,6 @@ public class Person {
     @Valid
     private Address address;
 
-    public Person() {
-    }
-
     public Person(
             @NotBlank(message = "firstname cannot blank") String firstName,
             @NotBlank(message = "lastname cannot blank") String lastName,
@@ -29,6 +26,9 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+    }
+
+    public Person() {
     }
 
     public String getFirstName() {

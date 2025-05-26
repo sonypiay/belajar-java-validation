@@ -3,6 +3,7 @@ package programmerzamannow.validation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import jakarta.validation.groups.ConvertGroup;
 import jakarta.validation.groups.Default;
 import org.hibernate.validator.constraints.LuhnCheck;
@@ -14,6 +15,7 @@ import programmerzamannow.validation.payload.EmailErrorPayload;
 public class Payment {
 
     @NotBlank(message = "Order ID cannot blank", groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class})
+    @Size(min = 1, max = 10, message = "Order ID must be between {min} and {max} characters")
     private String orderId;
 
     @NotNull(
@@ -22,7 +24,7 @@ public class Payment {
     )
     @Range(
             min = 10_000L, max = 100_000_000L,
-            message = "Amount must be between 10.000 and 100.000.000",
+            message = "Amount must be between {min} and {max}",
             groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class}
     )
     private Long amount;
